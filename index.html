@@ -9,7 +9,21 @@
 		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 		<script>
 			$(document).ready( function () {
-				$('#myTable').DataTable({"ajax": "pev_research.json"});
+				$('#myTable').DataTable({
+					"ajax": {
+						"url": "data.json",
+						"dataSrc": function ( json ) {
+							for ( const key in json )
+							{
+								json.data[i].pevName = key;
+								json.data[i].type = json[key]["Type"];
+								json.data[i].testedValue = json[key]["Tested Value"];
+								json.data[i].description = json[key]["Description"];
+							}
+							return json.data;
+						}
+					}
+				});
 			} );
 		</script>
 	</head>
