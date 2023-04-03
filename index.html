@@ -7,10 +7,12 @@
 			  crossorigin="anonymous">
 		</script>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+		<link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.3.2/css/fixedHeader.dataTables.min.css" />
 		<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+		<script src="https://cdn.datatables.net/fixedheader/3.3.2/js/dataTables.fixedHeader.min.js"></script>
 		<script>
 			$(document).ready( function () {
-				$('#myTable').DataTable({
+				var pevTable = $('#myTable').DataTable({
 					"ajax": {
 						"url": "./pev_research.json",
 					},
@@ -18,16 +20,17 @@
 						{ data: "name" },
 						{ data: "Type" },
 						{ data: "Tested Value" },
-						{ data: "Description"}
+						{ data: "Description" }
 					],
 					"paging": false
 				});
+				new $.fn.dataTable.FixedHeader( pevTable );
 			} );
 		</script>
 	</head>
 	<body>
 		<div style="margin:50px">
-			<table id="myTable" class="display">
+			<table id="myTable" class="display" style="width:100%">
 				<thead>
 					<tr>
 						<th>Name</th>
