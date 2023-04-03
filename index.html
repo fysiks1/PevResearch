@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<script
@@ -11,24 +12,31 @@
 			$(document).ready( function () {
 				$('#myTable').DataTable({
 					"ajax": {
-						"url": "data.json",
-						"dataSrc": function ( json ) {
-							for ( const key in json )
-							{
-								json.data[i].pevName = key;
-								json.data[i].type = json[key]["Type"];
-								json.data[i].testedValue = json[key]["Tested Value"];
-								json.data[i].description = json[key]["Description"];
-							}
-							console.log(json.data);
-							return json.data;
-						}
-					}
+						"url": "./pev_research.json",
+					},
+					columns: [
+						{ data: "name" },
+						{ data: "Type" },
+						{ data: "Tested Value" },
+						{ data: "Description"}
+					],
+					"paging": false
 				});
 			} );
 		</script>
 	</head>
 	<body>
-		<table id="myTable" class="display" style="width:100%"></table>
+		<table id="myTable" class="display">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Value</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
 	</body>
 </html>
